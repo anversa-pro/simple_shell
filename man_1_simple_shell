@@ -1,0 +1,31 @@
+.TH Holberton Shell 3 "13 August 2021" "hsh man page"
+. SH NAME
+hsh - command-line interpreter that provides a command line user interface
+.SH SYNOPSIS
+#include ".h"
+int function();
+
+.SH DESCRIPTION
+
+The function.
+
+
+.RS 3
+
+.br
+
+.br
+.RE
+
+.SH RETURN
+
+.SH EXAMPLES
+
+.SH BUGS
+
+.SH AUTHOR
+### :email: mail :email:
+
+ * [Maria Paula Medina](3341@holbertonschool.com)
+ * [Angela Vergara](3423@holbertonschool.com)
+ * [Michael Jose Celeita](2909@holbertonschool.com)
