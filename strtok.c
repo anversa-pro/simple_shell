@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
+#include "shell.h"
+
 /**
  * main - Prints all arguments
  *
@@ -9,10 +8,9 @@
  *
  * Return: Success status
  */
-int main()
+int _strtok(inputdata_t *data)
 {
-	char text[] = "hola;chao";
-	const char *DELIM = ";";
+	char *text = data->inputarray;
 	char *token;
 
 	token = strtok(text, DELIM);

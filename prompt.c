@@ -1,26 +1,23 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
+#include "shell.h"
+
 /**
  * main - Prints all arguments
  *
- * @ac: is the number of items in av
- * @av: is a NULL terminated array of strings
- *
  * Return: Success status
  */
-int main(void)
+int promptdisplay(inputdata_t *data)
 {
-	char *prompt = "$ ";
-	char *line;
+	char *line = NULL;
 	size_t lineSize = 0;
 	int charactersRead = 0;
+	
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, PROMPT, strlen(PROMPT));
+	charactersRead = getline(&line, &lineSize, stdin);
+	line[charactersRead - 1] = '\0';
+	//write(STDOUT_FILENO, line, charactersRead);
+	data->inputarray = line;
+	data->inputsize = lineSize;
 
-	while (1)
-	{
-		write(STDOUT_FILENO, prompt, strlen(prompt));
-		charactersRead = getline(&line, &lineSize, stdin);
-		write(STDOUT_FILENO, line, charactersRead);
-	}
-	return (0);
+	return (charactersRead);
 }
