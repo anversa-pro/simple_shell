@@ -16,7 +16,8 @@
 #include <sys/wait.h>
 #define PROMPT "$ "
 #define DELIM " "
-
+/* global variable that extract env of system*/
+extern char **environ;
 /**
  * struct sev_s - shell env vars
 
@@ -26,9 +27,9 @@
  */
 typedef struct inputdata
 {
-	int mode;
 	char* inputarray;
 	size_t inputsize;
+	char** copy_path;
 } inputdata_t;
 
 
@@ -37,5 +38,8 @@ int promptdisplay(inputdata_t *data);
 
 /*function that prints all arguments*/
 int _strtok(inputdata_t *data);
+
+/*function that do a copy of the PATH*/
+int strtok_path(inputdata_t *data);
 
 #endif /* H_SHELL */

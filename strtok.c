@@ -1,5 +1,5 @@
 #include "shell.h"
-
+//#define STRTOK_TEST
 /**
  * main - Prints all arguments
  *
@@ -28,3 +28,46 @@ int _strtok(inputdata_t *data)
 	}
 	return (0);
 }
+int str_startwith(char *env, char *string_to_check)
+{
+	int j;
+	int c;
+
+	for (j = 0; env[j] >= '\0'; j++)
+	{
+		for (c = 0; string_to_check[c] >= '\0'; c++)
+		{
+			if (env[j + c] != string_to_check[c])
+			{
+				break;
+			}
+		}
+		if (!string_to_check[c])
+		{
+			return ((&env[j])==env);
+		}
+	}
+	return (0);
+}
+//enter to env, get path and return a pointer to copy of path
+char *getpath()
+{
+  char **env = environ;
+
+  for (; *env; env++)
+  {
+    //printf("%s\n", *env);
+	if (str_startwith(*env, "PATH="))
+	{
+		return(strdup((*env) + 5));// return a pointer to copy of path
+	}
+  }
+  return NULL;
+}
+#ifdef STRTOK_TEST
+int main(void)
+{
+	printf("%s\n", getpath());
+	return(0);
+}
+#endif
