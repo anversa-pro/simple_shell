@@ -11,14 +11,20 @@
 int _strtok(inputdata_t *data)
 {
 	char *text = data->inputarray;
-	char *token;
+	char *token[2048];
+	char *tmp;
+	int i = 0;
 
-	token = strtok(text, DELIM);
-
-	while (token != NULL)
+	token[0] = strtok(text, DELIM);
+	printf("token posicion i %d %s\n", i, token[0]);
+	i++;
+	tmp = text;
+	while (tmp != NULL)
 	{
-		printf("%s\n", token);
-		token = strtok(NULL, DELIM);
+		tmp = strtok(NULL, DELIM);
+		token[i] = tmp;
+		printf("token posicion i %d %s\n", i, token[i]);
+		i++;
 	}
 	return (0);
 }
