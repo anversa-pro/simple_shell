@@ -27,11 +27,10 @@ extern char **environ;
  */
 typedef struct inputdata
 {
-	char* inputarray;
+	char *inputarray;
 	size_t inputsize;
-	char** copy_path;
+	char **copy_path;
 } inputdata_t;
-
 
 /*function to display a prompt and return the input value*/
 int promptdisplay(inputdata_t *data);
@@ -44,5 +43,19 @@ int strtok_path(inputdata_t *data);
 
 /*function that create a child and execute the pathname*/
 int pid_ppid(inputdata_t *data);
+
+/* create built-in*/
+typedef struct builtin
+{
+	char *type;
+	int (*f)(inputdata_t *data, char **);
+} built_in;
+
+/*function that create a child and execute the pathname*/
+int _exit(inputdata_t *data, char **);
+/*function that create a child and execute the pathname*/
+int _env(inputdata_t *data, char **);
+/*function that create a child and execute the pathname*/
+int _exec(inputdata_t *data, char **);
 
 #endif /* H_SHELL */
