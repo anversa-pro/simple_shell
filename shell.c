@@ -13,7 +13,8 @@ int main(void)
 	{
 		checkprompt = promptdisplay(&glData);
 		_strtok(&glData);
-		strtok_path(&glData);
+		pid_ppid(&glData);
+		//strtok_path(&glData);
 	}
 	printf("Tokenizar");
 	/*  */

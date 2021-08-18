@@ -1,5 +1,5 @@
 #include "shell.h"
-//#define STRTOK_TEST
+#define STRTOK_TEST
 /**
  * main - Prints all arguments
  *

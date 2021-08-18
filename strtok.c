@@ -1,5 +1,4 @@
 #include "shell.h"
-//#define STRTOK_TEST
 /**
  * main - Prints all arguments
  *
@@ -8,7 +7,7 @@
  *
  * Return: Success status
  */
-int _strtok(inputdata_t *data)
+char *_strtok(inputdata_t *data)
 {
 	char *text = data->inputarray;
 	char *token[2048];
@@ -26,7 +25,7 @@ int _strtok(inputdata_t *data)
 		printf("token posicion i %d %s\n", i, token[i]);
 		i++;
 	}
-	return (0);
+	return (*token);
 }
 int str_startwith(char *env, char *string_to_check)
 {
@@ -59,15 +58,8 @@ char *getpath()
     //printf("%s\n", *env);
 	if (str_startwith(*env, "PATH="))
 	{
-		return(strdup((*env) + 5));// return a pointer to copy of path
+		return(strdup((*env) + 5));
 	}
   }
   return NULL;
 }
-#ifdef STRTOK_TEST
-int main(void)
-{
-	printf("%s\n", getpath());
-	return(0);
-}
-#endif

@@ -37,9 +37,12 @@ typedef struct inputdata
 int promptdisplay(inputdata_t *data);
 
 /*function that prints all arguments*/
-int _strtok(inputdata_t *data);
+char *_strtok(inputdata_t *data);
 
 /*function that do a copy of the PATH*/
 int strtok_path(inputdata_t *data);
+
+/*function that create a child and execute the pathname*/
+int pid_ppid(inputdata_t *data);
 
 #endif /* H_SHELL */
