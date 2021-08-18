@@ -57,5 +57,13 @@ int _exit(inputdata_t *data, char **);
 int _env(inputdata_t *data, char **);
 /*function that create a child and execute the pathname*/
 int _exec(inputdata_t *data, char **);
+/*Initialize a new environment variable*/
+int _setenv(inputdata_t *data, char **);
+/*Remove an environment variable*/
+int _unsetenv(inputdata_t *data, char **);
+/*Remove an environment variable*/
+int _cd(inputdata_t *data, char **);
+/*Remove an environment variable*/
+int _alias(inputdata_t *data, char **);
 
 #endif /* H_SHELL */
