@@ -1,6 +1,7 @@
 #ifndef H_SHELL
 #define H_SHELL
 
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,16 +28,17 @@ extern char **environ;
  */
 typedef struct inputdata
 {
-	char *inputarray;
-	size_t inputsize;
-	char **copy_path;
+    char *inputarray;
+    size_t inputsize;
+    char **copy_path;
+    char *args_token[20];
 } inputdata_t;
 
 /*function to display a prompt and return the input value*/
 int promptdisplay(inputdata_t *data);
 
 /*function that prints all arguments*/
-char *_strtok(inputdata_t *data);
+void _strtok(inputdata_t *data);
 
 /*function that do a copy of the PATH*/
 int strtok_path(inputdata_t *data);
@@ -45,25 +47,26 @@ int strtok_path(inputdata_t *data);
 int pid_ppid(inputdata_t *data);
 
 /* create built-in*/
-typedef struct builtin
-{
-	char *type;
-	int (*f)(inputdata_t *data, char **);
-} built_in;
-
+/**
+* typedef struct builtin
+*{
+*    char *type;
+*    int (*f)(inputdata_t *data, char **);
+*} built_in;
+*/
 /*function that create a child and execute the pathname*/
-int _exit(inputdata_t *data, char **);
+//* int _exit(inputdata_t *data, char **);
+// /*function that create a child and execute the pathname*/
+//int _env(inputdata_t *data, char **);
 /*function that create a child and execute the pathname*/
-int _env(inputdata_t *data, char **);
-/*function that create a child and execute the pathname*/
-int _exec(inputdata_t *data, char **);
+//int _exec(inputdata_t *data, char **);
 /*Initialize a new environment variable*/
-int _setenv(inputdata_t *data, char **);
+//int _setenv(inputdata_t *data, char **);
 /*Remove an environment variable*/
-int _unsetenv(inputdata_t *data, char **);
+//int _unsetenv(inputdata_t *data, char **);
 /*Remove an environment variable*/
-int _cd(inputdata_t *data, char **);
+//int _cd(inputdata_t *data, char **);
 /*Remove an environment variable*/
-int _alias(inputdata_t *data, char **);
+//int _alias(inputdata_t *data, char **);
 
 #endif /* H_SHELL */
