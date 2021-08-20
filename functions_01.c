@@ -88,12 +88,15 @@ int pid_ppid(inputdata_t *data)
  * *@data: Pointer to global structure
  * Return: Success status
  */
-int pid_ppid(inputdata_t *data)
+int path_pid_ppid(inputdata_t *data)
 {
 	pid_t pid;
 	int status = 0, i = 0;
 	int execute;
-	int c = 0;
+	int c = 0, j = 0;
+	char *temp[1024];
+	char *slash = "/";
+	struct stat sb;
 	/*
 	* while (data->args_token[i] != NULL)
 	* {
@@ -101,22 +104,35 @@ int pid_ppid(inputdata_t *data)
 	* 	i++;
 	*}
 	*/
-	pid = fork();
-	if (pid == -1)
+	for (; data->tokenized_path[j] != NULL; j++)
 	{
-		perror("Error:"); /* no se creo el hijo */
-		return (1);
+		strcat(data->tokenized_path[j], slash);
+		strcat(data->tokenized_path[j], data->args_token[0]);
+		printf("%s\n", data->tokenized_path[j]);
+		/**if (stat(data->args_token[0], &sb) == -1)
+			{
+				perror("stat");
+				exit(EXIT_FAILURE);
+			}*/
+		if (stat(data->tokenized_path[j], &sb) == 0)
+		{
+			pid = fork();
+			if (pid == -1)
+			{
+				perror("Error:"); /* no se creo el hijo */
+				return (1);
+			}
+			if (pid == 0)
+			{
+				printf("%s\n", data->tokenized_path[j]);
+				execute = execve(data->tokenized_path[j], data->tokenized_path, NULL);
+				if (execute == -1)
+					exit(98);
+			}
+			else
+				wait(&status); /* se creo el papa */
+			pid = getpid();
+		}
 	}
-	if (pid == 0)
-	{
-		(!data->tokenized_path[i]!= data->args_token[0])
-		execute = execve(data->args_token[0], data->args_token, NULL);
-		if (execute == -1)
-			exit(98);
-		e
-	}
-	else
-		wait(&status); /* se creo el papa */
-	my_pid = getpid();
 	return (0);
 }

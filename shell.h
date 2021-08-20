@@ -55,6 +55,8 @@ int pid_ppid(inputdata_t *data);
 /* Copy environ and search for path into the copy. */
 char *getpath(void);
 
+/*function that create a child, execute the pathname and concatenate with input*/
+int path_pid_ppid(inputdata_t *data);
 /**
 * struct builtin - shell structure to save builtins
 * *@type: pointer to a string to compare input builtins
