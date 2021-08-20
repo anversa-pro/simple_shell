@@ -8,6 +8,7 @@ int main(void)
 	int checkprompt = 0;
 	inputdata_t glData = {};
 	int k = 0;
+	char *copy_string;
 	/**
 	* built_in builtin_function[] = {
 	* {"exit", sh_exit},
@@ -38,8 +39,11 @@ int main(void)
 	_strtok(&glData);
 	/* Creates child process to excecute tokenized arg */
 	pid_ppid(&glData);
-
-	/* strtok_path(&glData); */
+	/* Copies the environment & find the path*/
+	glData.copy_path = getpath(); /*Remember to free copy path*/
+	/*printf("%s\n\n", glData.copy_path); */
+	/* Tokenize path to find the directory */
+	strtok_path(&glData);
 	}
 	if (isatty(STDIN_FILENO))
 	write(1, "\n", 1);

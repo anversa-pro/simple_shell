@@ -1,5 +1,6 @@
 #include "shell.h"
 
+
 /* FUNCTION 02 - A */
 /**
  * str_startwith - Search for a string into a string
@@ -40,9 +41,33 @@ char *getpath()
 
 	for (; *env; env++)
 	{
-		/* printf("%s\n", *env); */
+		/* ("%s\n", *env); */
 		if (str_startwith(*env, "PATH="))
 			return (strdup((*env) + 5));
 	}
 	return (NULL);
+}
+
+/**
+ * strtok_path - Function that tokenize the path.
+ * *@data: Pointer to global structure
+ * Return: Success status
+ */
+int strtok_path(inputdata_t *data)
+{
+	char *text = data->copy_path;
+	char *tmp;
+	int i = 0;
+
+	data->tokenized_path[0] = strtok(text, DELIM2);
+	/* printf("token posicion i %d %s\n", i, data->tokenized_path[0]); */
+	i++;
+	tmp = text;
+	while (tmp != NULL)
+	{
+		tmp = strtok(NULL, DELIM2);
+		data->tokenized_path[i] = tmp;
+		i++;
+	}
+	return (0);
 }

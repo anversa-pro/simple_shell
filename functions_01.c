@@ -53,28 +53,17 @@ void _strtok(inputdata_t *data)
  */
 int pid_ppid(inputdata_t *data)
 {
-	pid_t my_pid;
 	pid_t pid;
 	int status = 0, i = 0;
 	int execute;
 	int c = 0;
-	char *slash = "/";
-
-	while (data->args_token[i] != NULL)
-	{
-		for (c = 0; data->args_token[c] != NULL; c++)
-		{
-			if (data->args_token[i] == slash)
-				continue;
-			else
-			{
-				/* printf("%s\n", *data->args_token); */
-				/* printf("token posicion i %d %s\n", i, data->args_token[i]); */
-				printf("./s""hell: No such file or directory\n");
-			}
-		}
-		i++;
-	}
+	/*
+	* while (data->args_token[i] != NULL)
+	* {
+	*	printf("./s""hell: No such file or directory\n");
+	* 	i++;
+	*}
+	*/
 	pid = fork();
 	if (pid == -1)
 	{
@@ -86,6 +75,45 @@ int pid_ppid(inputdata_t *data)
 		execute = execve(data->args_token[0], data->args_token, NULL);
 		if (execute == -1)
 			exit(98);
+	}
+	else
+		wait(&status); /* se creo el papa */
+	pid = getpid();
+	return (0);
+}
+
+/* FUNCTION 01 - D */
+/**
+ * pid_ppid - Creates child process to execute & find PATH
+ * *@data: Pointer to global structure
+ * Return: Success status
+ */
+int pid_ppid(inputdata_t *data)
+{
+	pid_t pid;
+	int status = 0, i = 0;
+	int execute;
+	int c = 0;
+	/*
+	* while (data->args_token[i] != NULL)
+	* {
+	*	printf("./s""hell: No such file or directory\n");
+	* 	i++;
+	*}
+	*/
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("Error:"); /* no se creo el hijo */
+		return (1);
+	}
+	if (pid == 0)
+	{
+		(!data->tokenized_path[i]!= data->args_token[0])
+		execute = execve(data->args_token[0], data->args_token, NULL);
+		if (execute == -1)
+			exit(98);
+		e
 	}
 	else
 		wait(&status); /* se creo el papa */

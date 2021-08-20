@@ -17,6 +17,8 @@
 #include <sys/wait.h>
 #define PROMPT "$ "
 #define DELIM " "
+#define DELIM2 ":"
+
 /* global variable that extract env of system*/
 extern char **environ;
 /**
@@ -34,7 +36,8 @@ typedef struct inputdata
 	char *inputarray;
 	size_t inputsize;
 	char *args_token[20];
-	char **copy_path;
+	char *copy_path; /* Entire PATH without PATH= */
+	char *tokenized_path[1024]; /*Tokenized PATH*/
 } inputdata_t;
 
 /*function to display a prompt and return the input value*/
@@ -48,6 +51,9 @@ int strtok_path(inputdata_t *data);
 
 /*function that create a child and execute the pathname*/
 int pid_ppid(inputdata_t *data);
+
+/* Copy environ and search for path into the copy. */
+char *getpath(void);
 
 /**
 * struct builtin - shell structure to save builtins
