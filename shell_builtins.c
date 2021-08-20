@@ -1,41 +1,71 @@
 #include "shell.h"
-int _exit(inputdata_t *data, char **tokeninput)
+
+/* BUILTINS 01 - A */
+/**
+ * sh_exit - Emulates command exit.
+ * *@data: Pointer to global structure
+ * Return: to define.
+ */
+int sh_exit(inputdata_t *data)
 {
 	(void)data;
-	(void)tokeninput;
-	printf("Entre a exicve");
+	printf("Into exit function");
 
 	return (0);
 }
-int _env(inputdata_t *data, char **tokeninput)
+
+/* BUILTINS 01 - B */
+/**
+ * sh_env - Emulates command env.
+ * *@data: Pointer to global structure
+ * Return: to define.
+ */
+int sh_env(inputdata_t *data)
 {
 	(void)data;
-	(void)tokeninput;
-	printf("Entre a exicve");
+	printf("Into env function");
 
 	return (0);
 }
-int _exec(inputdata_t *data, char **tokeninput)
+
+/* BUILTINS 01 - C */
+/**
+ * sh_exec - Emulates command exec.
+ * *@data: Pointer to global structure
+ * Return: to define.
+ */
+int sh_exec(inputdata_t *data)
 {
 	(void)data;
-	(void)tokeninput;
-	printf("Entre a exicve");
+	printf("Into exec function");
 
 	return (0);
 }
-int _setenv(inputdata_t *data, char **tokeninput)
+
+/* BUILTINS 01 - D */
+/**
+ * sh_setenv - Emulates command setenv.
+ * *@data: Pointer to global structure
+ * Return: to define.
+ */
+int sh_setenv(inputdata_t *data)
 {
 	(void)data;
-	(void)tokeninput;
-	printf("Entre a exicve"tokeninput);
+	printf("Into setenv function");
 
 	return (0);
 }
-int _unsetenv(inputdata_t *data, char **tokeninput)
+
+/* BUILTINS 01 - E */
+/**
+ * sh_unsetenv - Emulates command unsetenv.
+ * *@data: Pointer to global structure
+ * Return: to define.
+ */
+int sh_unsetenv(inputdata_t *data)
 {
 	(void)data;
-	(void)tokeninput;
-	printf("Entre a exicve");
+	printf("Into unsetenv function");
 
 	return (0);
 }

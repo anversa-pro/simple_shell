@@ -1,11 +1,8 @@
 #include "shell.h"
 #define STRTOK_TEST
 /**
- * main - Prints all arguments
- *
- * @ac: is the number of items in av
- * @av: is a NULL terminated array of strings
- *
+ * strtok_path - Function that tokenize the path.
+ * *@data: Pointer to global structure
  * Return: Success status
  */
 int strtok_path(inputdata_t *data)

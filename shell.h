@@ -20,18 +20,21 @@
 /* global variable that extract env of system*/
 extern char **environ;
 /**
- * struct sev_s - shell env vars
-
- * Description: Struct contain all shell env vars.
- * This one struct will be passed from func to func and contain
- * all the shell env vars for the current session.
- */
+* struct inputdata - shell structure to save and manage info and args
+* *@inputarray: pointer to a copy of terminal input string
+* @inputsize: size of terminal input string
+* *@args_token: pointer to a segmented input string
+* **@copy_path: copy of env PATH
+* Description: Struct contain all shell info.
+* This one struct will be passed from func to func and contain
+* all the shell info for the current session.
+*/
 typedef struct inputdata
 {
-    char *inputarray;
-    size_t inputsize;
-    char **copy_path;
-    char *args_token[20];
+	char *inputarray;
+	size_t inputsize;
+	char *args_token[20];
+	char **copy_path;
 } inputdata_t;
 
 /*function to display a prompt and return the input value*/
@@ -46,7 +49,12 @@ int strtok_path(inputdata_t *data);
 /*function that create a child and execute the pathname*/
 int pid_ppid(inputdata_t *data);
 
-/* create built-in*/
+/**
+* struct builtin - shell structure to save builtins
+* *@type: pointer to a string to compare input builtins
+* *@f: pointer to a function to run builtins
+* Description: Struct that contains builtins
+*/
 /**
 * typedef struct builtin
 *{
@@ -54,9 +62,10 @@ int pid_ppid(inputdata_t *data);
 *    int (*f)(inputdata_t *data, char **);
 *} built_in;
 */
+/**
 /*function that create a child and execute the pathname*/
-//* int _exit(inputdata_t *data, char **);
-// /*function that create a child and execute the pathname*/
+//int sh_exit(inputdata_t *data, char **);
+/*function that create a child and execute the pathname*/
 //int _env(inputdata_t *data, char **);
 /*function that create a child and execute the pathname*/
 //int _exec(inputdata_t *data, char **);
