@@ -128,11 +128,11 @@ int path_pid_ppid(inputdata_t *data)
 			wait(&status); /* se creo el papa */
 			pid = getpid();
 		}
-		/**else
-		{
-			perror("sh");
-			exit(EXIT_FAILURE);
-		}*/
+	}
+	if (i == 0)
+	{
+		perror("sh");
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }

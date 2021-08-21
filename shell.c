@@ -30,22 +30,22 @@ int main(void)
 	/* Checks if its EOF*/
 	while (checkprompt != -1)
 	{
-	checkprompt = promptdisplay(&glData);
-	if (checkprompt == -1)
-	{
-		break;
-	}
-	/* Tokenize input string and saves it into global structure*/
-	_strtok(&glData);
-	/* Creates child process to excecute tokenized arg */
-	pid_ppid(&glData);
-	/* Copies the environment & find the path*/
-	glData.copy_path = getpath(); /*Remember to free copy path*/
-	/*printf("%s\n\n", glData.copy_path); */
-	/* Tokenize path to find the directory */
-	strtok_path(&glData);
-	path_pid_ppid(&glData);
+		checkprompt = promptdisplay(&glData);
+		if (checkprompt == -1)
+		{
+			break;
+		}
+		/* Tokenize input string and saves it into global structure*/
+		_strtok(&glData);
+		/* Creates child process to excecute tokenized arg */
+		pid_ppid(&glData);
+		/* Copies the environment & find the path*/
+		glData.copy_path = getpath(); /*Remember to free copy path*/
+		/*printf("%s\n\n", glData.copy_path); */
+		/* Tokenize path to find the directory */
+		strtok_path(&glData);
+		path_pid_ppid(&glData);
 	}
 	if (isatty(STDIN_FILENO))
-	write(1, "\n", 1);
+		write(1, "\n", 1);
 }
