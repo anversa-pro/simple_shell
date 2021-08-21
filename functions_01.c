@@ -108,13 +108,7 @@ int path_pid_ppid(inputdata_t *data)
 	{
 		strcat(data->tokenized_path[j], slash);
 		strcat(data->tokenized_path[j], data->args_token[0]);
-		printf("%s\n", data->tokenized_path[j]);
-		/**if (stat(data->args_token[0], &sb) == -1)
-			{
-				perror("stat");
-				exit(EXIT_FAILURE);
-			}*/
-		if (stat(data->tokenized_path[j], &sb) == 0)
+		if ((stat(data->tokenized_path[j], &sb) == 0) && i != 1)
 		{
 			pid = fork();
 			if (pid == -1)
@@ -124,15 +118,21 @@ int path_pid_ppid(inputdata_t *data)
 			}
 			if (pid == 0)
 			{
-				printf("%s\n", data->tokenized_path[j]);
-				execute = execve(data->tokenized_path[j], data->tokenized_path, NULL);
+				/**printf("%s\n", data->tokenized_path[j]);*/
+				execute = execve(data->tokenized_path[j], data->args_token, NULL);
 				if (execute == -1)
 					exit(98);
 			}
 			else
-				wait(&status); /* se creo el papa */
+				i = 1;
+			wait(&status); /* se creo el papa */
 			pid = getpid();
 		}
+		/**else
+		{
+			perror("sh");
+			exit(EXIT_FAILURE);
+		}*/
 	}
 	return (0);
 }
