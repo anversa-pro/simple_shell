@@ -38,6 +38,7 @@ typedef struct inputdata
 	char *args_token[20];
 	char *copy_path; /* Entire PATH without PATH= */
 	char *tokenized_path[1024]; /*Tokenized PATH*/
+	int promptcounter;
 } inputdata_t;
 
 /*function to display a prompt and return the input value*/

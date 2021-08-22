@@ -28,6 +28,7 @@ int main(void)
 	* }
 	*/
 	/* Checks if its EOF*/
+	glData.promptcounter = 0;
 	while (checkprompt != -1)
 	{
 		checkprompt = promptdisplay(&glData);

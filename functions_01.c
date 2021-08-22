@@ -18,6 +18,7 @@ int promptdisplay(inputdata_t *data)
 	line[charactersRead - 1] = '\0';
 	data->inputarray = line;
 	data->inputsize = lineSize;
+	data->promptcounter++;
 
 	return (charactersRead);
 }
@@ -91,10 +92,9 @@ int pid_ppid(inputdata_t *data)
 int path_pid_ppid(inputdata_t *data)
 {
 	pid_t pid;
-	int status = 0, i = 0;
+	int status = 0, i = 0, j = 0;
 	int execute;
-	int c = 0, j = 0;
-	char *temp[1024];
+	char *temp_path;
 	char *slash = "/";
 	struct stat sb;
 	/*
@@ -106,9 +106,12 @@ int path_pid_ppid(inputdata_t *data)
 	*/
 	for (; data->tokenized_path[j] != NULL; j++)
 	{
-		strcat(data->tokenized_path[j], slash);
-		strcat(data->tokenized_path[j], data->args_token[0]);
-		if ((stat(data->tokenized_path[j], &sb) == 0) && i != 1)
+		temp_path = malloc(sizeof(char*) * (strlen(data->tokenized_path[j]) + strlen(data->args_token[0]) + 1));
+		strcat(temp_path, data->tokenized_path[j]);
+		strcat(temp_path, slash);
+		strcat(temp_path, data->args_token[0]);
+
+		if ((stat(temp_path, &sb) == 0) && i != 1)
 		{
 			pid = fork();
 			if (pid == -1)
@@ -118,21 +121,24 @@ int path_pid_ppid(inputdata_t *data)
 			}
 			if (pid == 0)
 			{
-				/**printf("%s\n", data->tokenized_path[j]);*/
-				execute = execve(data->tokenized_path[j], data->args_token, NULL);
+				execute = execve(temp_path, data->args_token, NULL);
 				if (execute == -1)
 					exit(98);
 			}
 			else
+			{
+				wait(&status); /* se creo el papa */
 				i = 1;
-			wait(&status); /* se creo el papa */
+			}
 			pid = getpid();
 		}
+		free (temp_path);
 	}
 	if (i == 0)
 	{
-		perror("sh");
-		exit(EXIT_FAILURE);
+		/**si la primera palabra no se encuentra*/
+		printf("sh : %d: %s: not found\n", data->promptcounter, data->args_token[0]);
+		return(-1);
 	}
 	return (0);
 }
