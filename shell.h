@@ -58,7 +58,7 @@ char *getpath(void);
 /*function that create a child, execute the pathname and concatenate with input*/
 int path_pid_ppid(inputdata_t *data);
 /**
-* struct builtin - shell structure to save builtins
+* struct builtin - shell structure to save builtin
 * *@type: pointer to a string to compare input builtins
 * *@f: pointer to a function to run builtins
 * Description: Struct that contains builtins
