@@ -9,9 +9,7 @@
 int sh_exit(inputdata_t *data)
 {
 	(void)data;
-	printf("Into exit function");
-
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 /* BUILTINS 01 - B */
@@ -20,7 +18,7 @@ int sh_exit(inputdata_t *data)
  * *@data: Pointer to global structure
  * Return: to define.
  */
-int sh_env(inputdata_t *data)
+int _env(inputdata_t *data)
 {
 	(void)data;
 	printf("Into env function");
@@ -34,13 +32,13 @@ int sh_env(inputdata_t *data)
  * *@data: Pointer to global structure
  * Return: to define.
  */
-int sh_exec(inputdata_t *data)
+/**int sh_exec(inputdata_t *data)
 {
 	(void)data;
 	printf("Into exec function");
 
 	return (0);
-}
+}*/
 
 /* BUILTINS 01 - D */
 /**
@@ -48,13 +46,13 @@ int sh_exec(inputdata_t *data)
  * *@data: Pointer to global structure
  * Return: to define.
  */
-int sh_setenv(inputdata_t *data)
+/**int sh_setenv(inputdata_t *data)
 {
 	(void)data;
 	printf("Into setenv function");
 
 	return (0);
-}
+}*/
 
 /* BUILTINS 01 - E */
 /**
@@ -62,10 +60,10 @@ int sh_setenv(inputdata_t *data)
  * *@data: Pointer to global structure
  * Return: to define.
  */
-int sh_unsetenv(inputdata_t *data)
+/**int sh_unsetenv(inputdata_t *data)
 {
 	(void)data;
 	printf("Into unsetenv function");
 
 	return (0);
-}
+}*/

@@ -36,7 +36,7 @@ typedef struct inputdata
 	char *inputarray;
 	size_t inputsize;
 	char *args_token[20];
-	char *copy_path; /* Entire PATH without PATH= */
+	char *copy_path;			/* Entire PATH without PATH= */
 	char *tokenized_path[1024]; /*Tokenized PATH*/
 	int promptcounter;
 } inputdata_t;
@@ -64,21 +64,20 @@ int path_pid_ppid(inputdata_t *data);
 * *@f: pointer to a function to run builtins
 * Description: Struct that contains builtins
 */
-/**
-* typedef struct builtin
-*{
-*    char *type;
-*    int (*f)(inputdata_t *data, char **);
-*} built_in;
-*/
-/**
+
+typedef struct builtin
+{
+	char *type;
+	int (*f)(inputdata_t *data);
+} built_in;
+
 /*function that create a child and execute the pathname*/
-//int sh_exit(inputdata_t *data, char **);
+int sh_exit(inputdata_t *data);
 /*function that create a child and execute the pathname*/
-//int _env(inputdata_t *data, char **);
+int _env(inputdata_t *data);
 /*function that create a child and execute the pathname*/
 //int _exec(inputdata_t *data, char **);
-/*Initialize a new environment variable*/
+/*Initialize a new environment variable
 //int _setenv(inputdata_t *data, char **);
 /*Remove an environment variable*/
 //int _unsetenv(inputdata_t *data, char **);

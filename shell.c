@@ -9,24 +9,16 @@ int main(void)
 	inputdata_t glData = {};
 	int k = 0;
 	char *copy_string;
-	/**
-	* built_in builtin_function[] = {
-	* {"exit", sh_exit},
-	* {"exec", _exec},
-	* {"env", _env},
-	* {"setenv", _setenv},
-	* {"unsetenv", _unsetenv},
-	* {NULL, NULL}};
-	*
-	* while (builtin_function[k].type)
-	* {
-	* if (builtin_function[k].type[0] == glData.args_token[0])
-	* {
-	* 	return(builtin_function[k].f);
-	* }
-	* k++;
-	* }
-	*/
+	int j = 0;
+
+	built_in builtin_function[] = {
+		{"exit", sh_exit},
+		{NULL, NULL}};
+	/**{"env", _env},*/
+	/**{"exec", _exec},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},*/
+
 	/* Checks if its EOF*/
 	glData.promptcounter = 0;
 	while (checkprompt != -1)
@@ -46,6 +38,16 @@ int main(void)
 		/* Tokenize path to find the directory */
 		strtok_path(&glData);
 		path_pid_ppid(&glData);
+
+		while(!k)
+		{
+			if (builtin_function[k].type[0] == *glData.args_token[0])
+			{
+				builtin_function[k].f(&glData);
+			}
+			k++;
+		}
+		free(glData.copy_path);
 	}
 	if (isatty(STDIN_FILENO))
 		write(1, "\n", 1);
