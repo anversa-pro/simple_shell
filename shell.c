@@ -1,4 +1,14 @@
 #include "shell.h"
+
+/**/
+void sigint_handler(int number __attribute__((unused)))
+{
+	signal(SIGINT, sigint_handler);
+	write(STDOUT_FILENO, "\n", 1);
+	write(STDOUT_FILENO, PROMPT, strlen(PROMPT));
+	fflush(stdout);
+}
+
 /**
  * main - the holberton shell program
  * Return: 0 in success, everything else is an error
@@ -10,12 +20,15 @@ int main(void)
 	int k = 0;
 	char *copy_string;
 	int j = 0;
+	signal(SIGINT, sigint_handler);
 
 	built_in builtin_function[] = {
 		{"exit", sh_exit}, {"env", _env}, {NULL, NULL}};
 	glData.promptcounter = 0;
 	glData.inputarray = NULL;
 	glData.inputsize = 0;
+
+
 	while (checkprompt != -1) /* Checks if its EOF*/
 	{
 		checkprompt = promptdisplay(&glData);

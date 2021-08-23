@@ -47,7 +47,7 @@ char *getpath()
 	}
 	return (NULL);
 }
-
+/* FUNCTION 02 - C */
 /**
  * strtok_path - Function that tokenize the path.
  * *@data: Pointer to global structure
