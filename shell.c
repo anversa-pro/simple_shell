@@ -41,14 +41,13 @@ int main(void)
 		glData.copy_path = getpath(); /*Remember to free copy path*/
 		/* Tokenize path to find the directory */
 		strtok_path(&glData);
-		while(!k)
+		for(k = 0; !k; k++)
 		{
 			if (builtin_function[k].type[0] == *glData.args_token[0])
 			{
 				builtin_function[k].f(&glData);
 				continue;
 			}
-			k++;
 		}
 		/*printf("%s\n\n", glData.copy_path); */
 		path_pid_ppid(&glData);
