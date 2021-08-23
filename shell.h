@@ -35,10 +35,11 @@ typedef struct inputdata
 {
 	char *inputarray;
 	size_t inputsize;
-	char *args_token[20];
-	char *copy_path;			/* Entire PATH without PATH= */
+	char *args_token[1024];
+	char *copy_path;	/* Entire PATH without PATH= */
 	char *tokenized_path[1024]; /*Tokenized PATH*/
 	int promptcounter;
+	int wexitreturn;
 } inputdata_t;
 
 /*function to display a prompt and return the input value*/

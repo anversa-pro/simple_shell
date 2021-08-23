@@ -9,7 +9,9 @@
 int sh_exit(inputdata_t *data)
 {
 	(void)data;
-	exit(EXIT_SUCCESS);
+	free(data->copy_path);
+	free(data->inputarray);
+	exit(data->wexitreturn);
 }
 
 /* BUILTINS 01 - B */

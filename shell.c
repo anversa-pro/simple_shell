@@ -12,16 +12,11 @@ int main(void)
 	int j = 0;
 
 	built_in builtin_function[] = {
-		{"exit", sh_exit},
-		{"env", _env},
-		{NULL, NULL}};
-	/**{"exec", _exec},
-		{"setenv", _setenv},
-		{"unsetenv", _unsetenv},*/
-
-	/* Checks if its EOF*/
+		{"exit", sh_exit}, {"env", _env}, {NULL, NULL}};
 	glData.promptcounter = 0;
-	while (checkprompt != -1)
+	glData.inputarray = NULL;
+	glData.inputsize = 0;
+	while (checkprompt != -1) /* Checks if its EOF*/
 	{
 		checkprompt = promptdisplay(&glData);
 		if (checkprompt == -1)
@@ -31,28 +26,28 @@ int main(void)
 		/* Tokenize input string and saves it into global structure*/
 		_strtok(&glData);
 		/**si existe el archivo ejecuta el hijo*/
-		if(access(glData.args_token[0], F_OK) == 0)
+		if (!glData.args_token[0])
+			continue;
+		if (access(glData.args_token[0], F_OK) == 0)
 		{
-			/* Creates child process to excecute tokenized arg */
-			pid_ppid(&glData);
+			pid_ppid(&glData); /* Creates child process to excecute tokenized arg */
 			continue;
 		}
-		/* Copies the environment & find the path*/
-		glData.copy_path = getpath(); /*Remember to free copy path*/
-		/* Tokenize path to find the directory */
-		strtok_path(&glData);
-		for(k = 0; !k; k++)
+		glData.copy_path = getpath(); /* Cp env & find the path*/
+		strtok_path(&glData); /* Tokenize path to find the directory */
+		for (k = 0; !k; k++)
 		{
 			if (builtin_function[k].type[0] == *glData.args_token[0])
 			{
 				builtin_function[k].f(&glData);
+				free(glData.copy_path);
 				continue;
 			}
 		}
-		/*printf("%s\n\n", glData.copy_path); */
 		path_pid_ppid(&glData);
 		free(glData.copy_path);
 	}
+	free(glData.inputarray);
 	if (isatty(STDIN_FILENO))
 		write(1, "\n", 1);
 }

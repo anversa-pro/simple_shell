@@ -8,16 +8,13 @@
  */
 int promptdisplay(inputdata_t *data)
 {
-	char *line = NULL;
-	size_t lineSize = 0;
 	int charactersRead = 0;
 
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, PROMPT, strlen(PROMPT));
-	charactersRead = getline(&line, &lineSize, stdin);
-	line[charactersRead - 1] = '\0';
-	data->inputarray = line;
-	data->inputsize = lineSize;
+	charactersRead = getline(&(data->inputarray), &(data->inputsize), stdin);
+	if (charactersRead > 0)
+	        data->inputarray[charactersRead - 1] = '\0';
 	data->promptcounter++;
 
 	return (charactersRead);
@@ -58,13 +55,7 @@ int pid_ppid(inputdata_t *data)
 	int status = 0, i = 0;
 	int execute;
 	int c = 0;
-	/*
-	* while (data->args_token[i] != NULL)
-	* {
-	*	printf("./s""hell: No such file or directory\n");
-	* 	i++;
-	*}
-	*/
+
 	pid = fork();
 	if (pid == -1)
 	{
@@ -74,39 +65,34 @@ int pid_ppid(inputdata_t *data)
 	if (pid == 0)
 	{
 		execute = execve(data->args_token[0], data->args_token, NULL);
-		if (execute == -1)
-			exit(98);
+		// if (execute == -1)
+		// 	exit(98);
 	}
 	else
 		wait(&status); /* se creo el papa */
-	pid = getpid();
+		data->wexitreturn = WEXITSTATUS(status);
 	return (0);
 }
 
 /* FUNCTION 01 - D */
 /**
- * pid_ppid - Creates child process to execute & find PATH
+ * path_pid_ppid - Creates child process to execute & find PATH
  * *@data: Pointer to global structure
  * Return: Success status
  */
 int path_pid_ppid(inputdata_t *data)
 {
 	pid_t pid;
-	int status = 0, i = 0, j = 0;
-	int execute;
-	char *temp_path;
-	char *slash = "/";
+	int status = 0, i = 0, j = 0, execute, numtkpath = 0, numtktoken = 0;
+	char *temp_path, *slash = "/";
 	struct stat sb;
-	/*
-	* while (data->args_token[i] != NULL)
-	* {
-	*	printf("./s""hell: No such file or directory\n");
-	* 	i++;
-	*}
-	*/
+
 	for (; data->tokenized_path[j] != NULL; j++)
 	{
-		temp_path = malloc(sizeof(char*) * (strlen(data->tokenized_path[j]) + strlen(data->args_token[0]) + 1));
+		numtkpath = strlen(data->tokenized_path[j]);
+		numtktoken = strlen(data->args_token[0]);
+		temp_path = malloc(sizeof(char *) * (numtkpath + numtktoken + 1));
+		temp_path[0] = '\0';
 		strcat(temp_path, data->tokenized_path[j]);
 		strcat(temp_path, slash);
 		strcat(temp_path, data->args_token[0]);
@@ -117,28 +103,27 @@ int path_pid_ppid(inputdata_t *data)
 			if (pid == -1)
 			{
 				perror("Error:"); /* no se creo el hijo */
+				free(temp_path);
 				return (1);
 			}
 			if (pid == 0)
 			{
 				execute = execve(temp_path, data->args_token, NULL);
-				if (execute == -1)
-					exit(98);
+				// if (execute == -1)
+				// 	exit(98); /*salir con status*/
 			}
 			else
 			{
-				wait(&status); /* se creo el papa */
-				i = 1;
+				wait(&status), i = 1;
+				data->wexitreturn = WEXITSTATUS(status);
 			}
-			pid = getpid();
 		}
-		free (temp_path);
+		free(temp_path);
 	}
 	if (i == 0)
 	{
-		/**si la primera palabra no se encuentra*/
 		printf("sh : %d: %s: not found\n", data->promptcounter, data->args_token[0]);
-		return(-1);
+		return (-1);
 	}
 	return (0);
 }
