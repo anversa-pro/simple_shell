@@ -52,9 +52,7 @@ void _strtok(inputdata_t *data)
 int pid_ppid(inputdata_t *data)
 {
 	pid_t pid;
-	int status = 0, i = 0;
-	int execute;
-	int c = 0;
+	int status = 0;
 
 	pid = fork();
 	if (pid == -1)
@@ -64,11 +62,14 @@ int pid_ppid(inputdata_t *data)
 	}
 	if (pid == 0)
 	{
-		execute = execve(data->args_token[0], data->args_token, environ);
+		execve(data->args_token[0], data->args_token, environ);
 	}
 	else
+	{
 		wait(&status); /* se creo el papa */
 		data->wexitreturn = WEXITSTATUS(status);
+		printf("Exit status of the child was %d\n", data->wexitreturn);
+	}
 	return (0);
 }
 
@@ -81,7 +82,7 @@ int pid_ppid(inputdata_t *data)
 int path_pid_ppid(inputdata_t *data)
 {
 	pid_t pid;
-	int status = 0, i = 0, j = 0, execute, numtkpath = 0, numtktoken = 0;
+	int status = 0, i = 0, j = 0;
 	char *temp_path;
 	struct stat sb;
 
@@ -99,12 +100,13 @@ int path_pid_ppid(inputdata_t *data)
 			}
 			if (pid == 0)
 			{
-				execute = execve(temp_path, data->args_token, environ);
+				execve(temp_path, data->args_token, environ);
 			}
 			else
 			{
 				wait(&status), i = 1;
 				data->wexitreturn = WEXITSTATUS(status);
+				printf("Exit status of the child was %d\n", data->wexitreturn);
 			}
 		}
 		free(temp_path);

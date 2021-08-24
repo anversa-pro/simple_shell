@@ -18,9 +18,8 @@ void sigint_handler(int number __attribute__((unused)))
  */
 int main(void)
 {
-	int checkprompt = 0, k = 0, j = 0;
-	inputdata_t glData = {};
-	char *copy_string;
+	int checkprompt = 0, k = 0;
+	inputdata_t glData = {NULL};
 
 	signal(SIGINT, sigint_handler);
 
@@ -57,4 +56,5 @@ int main(void)
 	free(glData.inputarray);
 	if (isatty(STDIN_FILENO))
 		write(1, "\n", 1);
+	return(glData.wexitreturn);
 }
