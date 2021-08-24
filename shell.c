@@ -4,8 +4,7 @@
 void sigint_handler(int number __attribute__((unused)))
 {
 	signal(SIGINT, sigint_handler);
-	write(STDOUT_FILENO, "\n", 1);
-	write(STDOUT_FILENO, PROMPT, strlen(PROMPT));
+	_printf(STDOUT_FILENO, "\n%s", PROMPT);
 	fflush(stdout);
 }
 
