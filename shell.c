@@ -23,7 +23,7 @@ int main(void)
 	signal(SIGINT, sigint_handler);
 
 	built_in builtin_function[] = {
-		{"exit", sh_exit}, {"env", _env}, {NULL, NULL}};
+		{"exit", sh_exit}, {NULL, NULL}};
 	glData.promptcounter = 0;
 	glData.inputarray = NULL;
 	glData.inputsize = 0;
@@ -48,9 +48,9 @@ int main(void)
 		}
 		glData.copy_path = getpath(); /* Cp env & find the path*/
 		strtok_path(&glData); /* Tokenize path to find the directory */
-		for (k = 0; !k; k++)
+		for (k = 0; builtin_function[k].f; k++)
 		{
-			if (builtin_function[k].type[0] == *glData.args_token[0])
+			if (_strequal(builtin_function[k].type, glData.args_token[0]))
 			{
 				builtin_function[k].f(&glData);
 				free(glData.copy_path);

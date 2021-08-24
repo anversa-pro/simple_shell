@@ -20,13 +20,7 @@ int sh_exit(inputdata_t *data)
  * *@data: Pointer to global structure
  * Return: to define.
  */
-int _env(inputdata_t *data)
-{
-	(void)data;
-	printf("Into env function");
 
-	return (0);
-}
 
 /* BUILTINS 01 - C */
 /**

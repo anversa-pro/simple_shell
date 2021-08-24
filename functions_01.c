@@ -64,7 +64,7 @@ int pid_ppid(inputdata_t *data)
 	}
 	if (pid == 0)
 	{
-		execute = execve(data->args_token[0], data->args_token, NULL);
+		execute = execve(data->args_token[0], data->args_token, environ);
 		// if (execute == -1)
 		// 	exit(98);
 	}
@@ -108,7 +108,7 @@ int path_pid_ppid(inputdata_t *data)
 			}
 			if (pid == 0)
 			{
-				execute = execve(temp_path, data->args_token, NULL);
+				execute = execve(temp_path, data->args_token, environ);
 				// if (execute == -1)
 				// 	exit(98); /*salir con status*/
 			}

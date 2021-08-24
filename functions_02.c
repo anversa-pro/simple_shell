@@ -87,3 +87,25 @@ int StringLenght(char *string)
 	}
 	return (i);
 }
+/* FUNCTION 02 - E */
+/**
+ * _strequal - compares two strings
+ * *@s1: input array to compare
+ * *@s2: input array to compare
+ * Return: 0 if diference 1 if equal
+ */
+
+int _strequal(char *s1, char *s2)
+{
+	int i = 0;
+
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
