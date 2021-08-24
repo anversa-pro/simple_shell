@@ -93,9 +93,9 @@ int path_pid_ppid(inputdata_t *data)
 		numtktoken = StringLenght(data->args_token[0]);
 		temp_path = malloc(sizeof(char *) * (numtkpath + numtktoken + 1));
 		temp_path[0] = '\0';
-		strcat(temp_path, data->tokenized_path[j]);
-		strcat(temp_path, slash);
-		strcat(temp_path, data->args_token[0]);
+		_strcat(temp_path, data->tokenized_path[j]);
+		_strcat(temp_path, slash);
+		_strcat(temp_path, data->args_token[0]);
 
 		if ((stat(temp_path, &sb) == 0) && i != 1)
 		{

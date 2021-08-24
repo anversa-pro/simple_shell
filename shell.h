@@ -63,13 +63,18 @@ int path_pid_ppid(inputdata_t *data);
 /* _strequal - compares two strings */
 int _strequal(char *s1, char *s2);
 
+/* _strcat - concatenates two strings */
+char *_strcat(char *dest, char *src);
+
+/*function that count the number of characters*/
+int StringLenght(char *string);
+
 /**
 * struct builtin - shell structure to save builtin
 * *@type: pointer to a string to compare input builtins
 * *@f: pointer to a function to run builtins
 * Description: Struct that contains builtins
 */
-
 typedef struct builtin
 {
 	char *type;
@@ -78,11 +83,7 @@ typedef struct builtin
 
 /*function that create a child and execute the pathname*/
 int sh_exit(inputdata_t *data);
-/*function that create a child and execute the pathname*/
-int _env(inputdata_t *data);
 
-/*function that count the number of characters*/
-int StringLenght(char *string);
 /*function that create a child and execute the pathname*/
 //int _exec(inputdata_t *data, char **);
 /*Initialize a new environment variable

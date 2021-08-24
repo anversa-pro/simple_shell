@@ -14,14 +14,6 @@ int sh_exit(inputdata_t *data)
 	exit(data->wexitreturn);
 }
 
-/* BUILTINS 01 - B */
-/**
- * sh_env - Emulates command env.
- * *@data: Pointer to global structure
- * Return: to define.
- */
-
-
 /* BUILTINS 01 - C */
 /**
  * sh_exec - Emulates command exec.

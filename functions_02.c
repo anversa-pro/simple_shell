@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 /* FUNCTION 02 - A */
 /**
  * str_startwith - Search for a string into a string
@@ -70,42 +69,4 @@ int strtok_path(inputdata_t *data)
 		i++;
 	}
 	return (0);
-}
-/* FUNCTION 02 - D */
-/**
- * strtok_path - Function that tokenize the path.
- * @string: Pointer to global structure
- * Return: Success status
- */
-int StringLenght(char *string)
-{
-	int i = 0;
-
-	while (string[i])
-	{
-		i++;
-	}
-	return (i);
-}
-/* FUNCTION 02 - E */
-/**
- * _strequal - compares two strings
- * *@s1: input array to compare
- * *@s2: input array to compare
- * Return: 0 if diference 1 if equal
- */
-
-int _strequal(char *s1, char *s2)
-{
-	int i = 0;
-
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (1);
 }
