@@ -14,7 +14,7 @@ int promptdisplay(inputdata_t *data)
 		write(STDOUT_FILENO, PROMPT, StringLenght(PROMPT));
 	charactersRead = getline(&(data->inputarray), &(data->inputsize), stdin);
 	if (charactersRead > 0)
-	        data->inputarray[charactersRead - 1] = '\0';
+		data->inputarray[charactersRead - 1] = '\0';
 	data->promptcounter++;
 
 	return (charactersRead);
@@ -65,8 +65,6 @@ int pid_ppid(inputdata_t *data)
 	if (pid == 0)
 	{
 		execute = execve(data->args_token[0], data->args_token, environ);
-		// if (execute == -1)
-		// 	exit(98);
 	}
 	else
 		wait(&status); /* se creo el papa */
@@ -84,19 +82,12 @@ int path_pid_ppid(inputdata_t *data)
 {
 	pid_t pid;
 	int status = 0, i = 0, j = 0, execute, numtkpath = 0, numtktoken = 0;
-	char *temp_path, *slash = "/";
+	char *temp_path;
 	struct stat sb;
 
 	for (; data->tokenized_path[j] != NULL; j++)
 	{
-		numtkpath = StringLenght(data->tokenized_path[j]);
-		numtktoken = StringLenght(data->args_token[0]);
-		temp_path = malloc(sizeof(char *) * (numtkpath + numtktoken + 1));
-		temp_path[0] = '\0';
-		_strcat(temp_path, data->tokenized_path[j]);
-		_strcat(temp_path, slash);
-		_strcat(temp_path, data->args_token[0]);
-
+		temp_path = concat_temp(data, j);
 		if ((stat(temp_path, &sb) == 0) && i != 1)
 		{
 			pid = fork();
@@ -109,8 +100,6 @@ int path_pid_ppid(inputdata_t *data)
 			if (pid == 0)
 			{
 				execute = execve(temp_path, data->args_token, environ);
-				// if (execute == -1)
-				// 	exit(98); /*salir con status*/
 			}
 			else
 			{
@@ -122,8 +111,31 @@ int path_pid_ppid(inputdata_t *data)
 	}
 	if (i == 0)
 	{
-		_printf(2,"sh : %d: %s: not found\n", data->promptcounter, data->args_token[0]);
+		_printf(2, "sh : %d: %s: not found\n",
+		data->promptcounter, data->args_token[0]);
 		return (-1);
 	}
 	return (0);
+}
+
+/* FUNCTION 01 - E */
+/**
+ * concat_temp - Concatenation temporal to check path
+ * *@data: Pointer to global structure
+ * @j: integer for locate tokenized path position
+ * Return: Success status
+ */
+char *concat_temp(inputdata_t *data, int j)
+{
+	int numtkpath = 0, numtktoken = 0;
+	char *temp_path;
+
+	numtkpath = StringLenght(data->tokenized_path[j]);
+	numtktoken = StringLenght(data->args_token[0]);
+	temp_path = malloc(sizeof(char *) * (numtkpath + numtktoken + 1));
+	temp_path[0] = '\0';
+	_strcat(temp_path, data->tokenized_path[j]);
+	_strcat(temp_path, SLASH);
+	_strcat(temp_path, data->args_token[0]);
+	return (temp_path);
 }

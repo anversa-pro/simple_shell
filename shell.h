@@ -18,6 +18,7 @@
 #define PROMPT "$ "
 #define DELIM " "
 #define DELIM2 ":"
+#define SLASH "/"
 
 /* global variable that extract env of system*/
 extern char **environ;
@@ -69,6 +70,9 @@ char *_strcat(char *dest, char *src);
 /*function that count the number of characters*/
 int StringLenght(char *string);
 
+/* concat_temp - Concatenation temporal to check path */
+char *concat_temp(inputdata_t *data, int j);
+
 /**
 * struct builtin - shell structure to save builtin
 * *@type: pointer to a string to compare input builtins
@@ -87,7 +91,6 @@ int sh_exit(inputdata_t *data);
 int _printf(int fd, const char *format, ...);
 int print_c(va_list parameters, int j, char *join);
 int print_s(va_list parameters, int j, char *join);
-int print_p(va_list parameters, int j, char *join);
 int print_n(va_list parameters, int j, char *join);
 /**
  *  struct placeHolders- typedef struct

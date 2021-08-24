@@ -59,7 +59,6 @@ int strtok_path(inputdata_t *data)
 	int i = 0;
 
 	data->tokenized_path[0] = strtok(text, DELIM2);
-	/* printf("token posicion i %d %s\n", i, data->tokenized_path[0]); */
 	i++;
 	tmp = text;
 	while (tmp != NULL)

@@ -2,7 +2,7 @@
 
 /* FUNCTION STRINGS - 1 */
 /**
- * strtok_path - Function that tokenize the path.
+ * StringLenght - Function that calculates the length of a string
  * @string: Pointer to global structure
  * Return: Success status
  */
