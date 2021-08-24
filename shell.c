@@ -20,11 +20,11 @@ int main(void)
 {
 	int checkprompt = 0, k = 0;
 	inputdata_t glData = {NULL};
+	built_in builtin_function[] = {
+		{"exit", sh_exit}, {NULL, NULL}};
 
 	signal(SIGINT, sigint_handler);
 
-	built_in builtin_function[] = {
-		{"exit", sh_exit}, {NULL, NULL}};
 	glData.promptcounter = 0;
 	glData.inputarray = NULL, glData.inputsize = 0;
 
@@ -39,6 +39,12 @@ int main(void)
 		if (access(glData.args_token[0], F_OK) == 0)
 		{
 			pid_ppid(&glData); /*Create a child & tokenized args*/
+			continue;
+		}
+		else{
+			glData.wexitreturn = 126;
+			_printf(2, "sh : %d: %s: Permission denied\n", 
+			glData.promptcounter, glData.args_token[0]);
 			continue;
 		}
 		glData.copy_path = getpath(); /* Cp env & find the path*/

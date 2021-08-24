@@ -20,6 +20,8 @@
 #define DELIM2 ":"
 #define SLASH "/"
 
+/*		MAIN		*/
+
 /* global variable that extract env of system*/
 extern char **environ;
 /**
@@ -34,45 +36,46 @@ extern char **environ;
 */
 typedef struct inputdata
 {
-	char *inputarray;
-	size_t inputsize;
-	char *args_token[1024];
+	char *inputarray; /* saves input from terminal  (getline) */
+	size_t inputsize; /* saves size of input from terminal (getline)*/
+	char *args_token[1024]; /*Tokenized inputarray */
 	char *copy_path;	/* Entire PATH without PATH= */
 	char *tokenized_path[1024]; /*Tokenized PATH*/
-	int promptcounter;
-	int wexitreturn;
+	int promptcounter; /* counts number of input user commands*/
+	int wexitreturn; /*Integer that saves a flag that returns an exit*/
 } inputdata_t;
 
-/*function to display a prompt and return the input value*/
+/* Function to display a prompt and return the input value */
 int promptdisplay(inputdata_t *data);
 
-/*function that prints all arguments*/
+/* Function that tokenize input string to save it into structure */
 void _strtok(inputdata_t *data);
-
-/*function that do a copy of the PATH*/
-int strtok_path(inputdata_t *data);
-
-/*function that create a child and execute the pathname*/
-int pid_ppid(inputdata_t *data);
 
 /* Copy environ and search for path into the copy. */
 char *getpath(void);
 
+/*Function that tokenize the path*/
+int strtok_path(inputdata_t *data);
+
+/* Function that create a child and execute the pathname*/
+int pid_ppid(inputdata_t *data);
+
 /*function that create a child, execute the pathname and concatenate with input*/
 int path_pid_ppid(inputdata_t *data);
 
-/* _strequal - compares two strings */
+/* concat_temp - Concatenation temporal to check path */
+char *concat_temp(inputdata_t *data, int j);
+
+/* Function that compares two strings  */
 int _strequal(char *s1, char *s2);
 
-/* _strcat - concatenates two strings */
+/* Function that concatenates two strings */
 char *_strcat(char *dest, char *src);
 
 /*function that count the number of characters*/
 int StringLenght(char *string);
 
-/* concat_temp - Concatenation temporal to check path */
-char *concat_temp(inputdata_t *data, int j);
-
+/*		BUILT INS		*/
 /**
 * struct builtin - shell structure to save builtin
 * *@type: pointer to a string to compare input builtins
@@ -85,12 +88,19 @@ typedef struct builtin
 	int (*f)(inputdata_t *data);
 } built_in;
 
-/*function that create a child and execute the pathname*/
+/*builtin that emulates the command to exit from mini-shell*/
 int sh_exit(inputdata_t *data);
 
+/*		_PRINTF		*/
+
 int _printf(int fd, const char *format, ...);
+
+/* Function that fills place holders with string */
 int print_c(va_list parameters, int j, char *join);
+/* function that fills place holders with string */
 int print_s(va_list parameters, int j, char *join);
+
+/* function that fills place holders with string */
 int print_n(va_list parameters, int j, char *join);
 /**
  *  struct placeHolders- typedef struct
