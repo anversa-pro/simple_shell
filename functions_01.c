@@ -122,7 +122,7 @@ int path_pid_ppid(inputdata_t *data)
 	}
 	if (i == 0)
 	{
-		printf("sh : %d: %s: not found\n", data->promptcounter, data->args_token[0]);
+		_printf(2,"sh : %d: %s: not found\n", data->promptcounter, data->args_token[0]);
 		return (-1);
 	}
 	return (0);
