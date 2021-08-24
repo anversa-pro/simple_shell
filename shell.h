@@ -76,6 +76,9 @@ typedef struct builtin
 int sh_exit(inputdata_t *data);
 /*function that create a child and execute the pathname*/
 int _env(inputdata_t *data);
+
+/*function that count the number of characters*/
+int StringLenght(char *string);
 /*function that create a child and execute the pathname*/
 //int _exec(inputdata_t *data, char **);
 /*Initialize a new environment variable

@@ -71,3 +71,19 @@ int strtok_path(inputdata_t *data)
 	}
 	return (0);
 }
+/* FUNCTION 02 - D */
+/**
+ * strtok_path - Function that tokenize the path.
+ * @string: Pointer to global structure
+ * Return: Success status
+ */
+int StringLenght(char *string)
+{
+	int i = 0;
+
+	while (string[i])
+	{
+		i++;
+	}
+	return (i);
+}

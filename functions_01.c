@@ -3,7 +3,7 @@
 /* FUNCTION 01 - A */
 /**
  * promptdisplay - Prints prompt while holberton shell is running
- * *@data: Pointer to global structure
+ * @data: Pointer to global structure
  * Return: quantity of characters readed
  */
 int promptdisplay(inputdata_t *data)
@@ -11,7 +11,7 @@ int promptdisplay(inputdata_t *data)
 	int charactersRead = 0;
 
 	if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, PROMPT, strlen(PROMPT));
+		write(STDOUT_FILENO, PROMPT, StringLenght(PROMPT));
 	charactersRead = getline(&(data->inputarray), &(data->inputsize), stdin);
 	if (charactersRead > 0)
 	        data->inputarray[charactersRead - 1] = '\0';
@@ -89,8 +89,8 @@ int path_pid_ppid(inputdata_t *data)
 
 	for (; data->tokenized_path[j] != NULL; j++)
 	{
-		numtkpath = strlen(data->tokenized_path[j]);
-		numtktoken = strlen(data->args_token[0]);
+		numtkpath = StringLenght(data->tokenized_path[j]);
+		numtktoken = StringLenght(data->args_token[0]);
 		temp_path = malloc(sizeof(char *) * (numtkpath + numtktoken + 1));
 		temp_path[0] = '\0';
 		strcat(temp_path, data->tokenized_path[j]);
