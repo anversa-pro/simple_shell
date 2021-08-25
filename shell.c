@@ -23,7 +23,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 	int checkprompt = 0, k = 0;
 	inputdata_t glData = {NULL};
 	built_in builtin_function[] = {
-		{"exit", sh_exit}, {NULL, NULL}};
+		{"exit", sh_exit}, {"env", sh_env}, {NULL, NULL}};
 
 	signal(SIGINT, sigint_handler);
 
@@ -36,6 +36,12 @@ int main(int argc __attribute__((unused)), char *argv[])
 		if (checkprompt == -1)
 			break;
 		_strtok(&glData); /* Tokenize input and saves into glData*/
+		for (k = 0; builtin_function[k].f; k++)
+			if (_strequal(builtin_function[k].type, glData.args_token[0]))
+			{
+				builtin_function[k].f(&glData);
+				continue;
+			}
 		if (!glData.args_token[0]) /* Token is different from null*/
 			continue;
 		if (access_handler(&glData) == 0)
@@ -43,13 +49,6 @@ int main(int argc __attribute__((unused)), char *argv[])
 		/* DELETED LINE */
 		glData.copy_path = getpath(); /* Cp env & find the path*/
 		strtok_path(&glData); /* Tokenize path to find the directory */
-		for (k = 0; builtin_function[k].f; k++)
-			if (_strequal(builtin_function[k].type, glData.args_token[0]))
-			{
-				builtin_function[k].f(&glData);
-				free(glData.copy_path);
-				continue;
-			}
 		path_pid_ppid(&glData);
 		free(glData.copy_path);
 	}

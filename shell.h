@@ -103,6 +103,8 @@ typedef struct builtin
 /*builtin that emulates the command to exit from mini-shell*/
 int sh_exit(inputdata_t *data);
 
+/*builtin that emulates the command to exit from mini-shell*/
+int sh_env(inputdata_t *data);
 /*		_PRINTF		*/
 /* Function that emulates printf */
 int _printf(int fd, const char *format, ...);
