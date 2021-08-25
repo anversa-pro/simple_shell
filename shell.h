@@ -58,7 +58,7 @@ char *getpath(void);
 int strtok_path(inputdata_t *data);
 
 /* Function that create a child and execute the pathname*/
-int pid_ppid(inputdata_t *data);
+int pid_ppid(inputdata_t *data, char *);
 
 /*function that create a child, execute the pathname and concatenate with input*/
 int path_pid_ppid(inputdata_t *data);

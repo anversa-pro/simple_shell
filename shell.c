@@ -38,7 +38,7 @@ int main(void)
 			continue;
 		if (access(glData.args_token[0], F_OK) == 0)
 		{
-			pid_ppid(&glData); /*Create a child & tokenized args*/
+			pid_ppid(&glData, glData.args_token[0]); /*Create a child & tokenized args*/
 			continue;
 		}
 		glData.copy_path = getpath(); /* Cp env & find the path*/
@@ -56,5 +56,5 @@ int main(void)
 	free(glData.inputarray);
 	if (isatty(STDIN_FILENO))
 		write(1, "\n", 1);
-	return(glData.wexitreturn);
+	return (glData.wexitreturn);
 }
