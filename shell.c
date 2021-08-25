@@ -14,9 +14,11 @@ void sigint_handler(int number __attribute__((unused)))
 
 /**
  * main - the holberton shell program
+ * @argc: number of arguments
+ * **@argv: double pointer to arguments
  * Return: 0 in success, everything else is an error
  */
-int main(void)
+int main(int argc __attribute__((unused)), char *argv[])
 {
 	int checkprompt = 0, k = 0;
 	inputdata_t glData = {NULL};
@@ -25,8 +27,8 @@ int main(void)
 
 	signal(SIGINT, sigint_handler);
 
-	glData.promptcounter = 0;
-	glData.inputarray = NULL, glData.inputsize = 0;
+	glData.promptcounter = 0, glData.inputarray = NULL;
+	glData.inputsize = 0, glData.nameExecutable = argv[0];
 
 	while (checkprompt != -1) /* Checks if its EOF*/
 	{

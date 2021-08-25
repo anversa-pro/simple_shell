@@ -21,12 +21,16 @@
 #define DELIM " "
 #define DELIM2 ":"
 #define SLASH "/"
-
+#define DENIED "Permission denied\n" /* REVIEWTONEWFILE*/
+#define TOOLONG "File name too long\n" /* REVIEWTONEWFILE*/
+#define NREAD "Permission denied \n" /* REVIEWTONEWFILE*/
+#define NFOUND "not found\n" /* REVIEWTONEWFILE*/
 /*		MAIN		*/
 /* global variable that extract env of system*/
 extern char **environ;
 /**
 * struct inputdata - shell structure to save and manage info and args
+* *@nameExecutable: Executable name
 * *@inputarray: pointer to a copy of terminal input string
 * @inputsize: size of terminal input string
 * *@args_token: pointer to a segmented input string
@@ -40,6 +44,7 @@ extern char **environ;
 */
 typedef struct inputdata
 {
+	char *nameExecutable;
 	char *inputarray; /* saves input from terminal  (getline) */
 	size_t inputsize; /* saves size of input from terminal (getline)*/
 	char *args_token[1024]; /*Tokenized inputarray */
