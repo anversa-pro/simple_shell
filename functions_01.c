@@ -68,7 +68,6 @@ int pid_ppid(inputdata_t *data)
 	{
 		wait(&status); /* se creo el papa */
 		data->wexitreturn = WEXITSTATUS(status);
-		printf("Wexitreturn pp: %d \n", data->wexitreturn);
 	}
 	return (0);
 }
@@ -106,7 +105,6 @@ int path_pid_ppid(inputdata_t *data)
 			{
 				wait(&status), i = 1;
 				data->wexitreturn = WEXITSTATUS(status);
-				printf("Wexitreturn ppp: %d \n", data->wexitreturn);
 			}
 		}
 		free(temp_path);

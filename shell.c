@@ -41,12 +41,6 @@ int main(void)
 			pid_ppid(&glData); /*Create a child & tokenized args*/
 			continue;
 		}
-		else{
-			glData.wexitreturn = 126;
-			_printf(2, "sh : %d: %s: Permission denied\n", 
-			glData.promptcounter, glData.args_token[0]);
-			continue;
-		}
 		glData.copy_path = getpath(); /* Cp env & find the path*/
 		strtok_path(&glData); /* Tokenize path to find the directory */
 		for (k = 0; builtin_function[k].f; k++)
