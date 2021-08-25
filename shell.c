@@ -38,11 +38,9 @@ int main(int argc __attribute__((unused)), char *argv[])
 		_strtok(&glData); /* Tokenize input and saves into glData*/
 		if (!glData.args_token[0]) /* Token is different from null*/
 			continue;
-		if (access(glData.args_token[0], F_OK) == 0)
-		{
-			pid_ppid(&glData, glData.args_token[0]); /*Create a child & tokenized args*/
+		if (access_handler(&glData) == 0)
 			continue;
-		}
+		/* DELETED LINE */
 		glData.copy_path = getpath(); /* Cp env & find the path*/
 		strtok_path(&glData); /* Tokenize path to find the directory */
 		for (k = 0; builtin_function[k].f; k++)

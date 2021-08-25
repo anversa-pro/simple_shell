@@ -84,6 +84,9 @@ char *_strcat(char *dest, char *src);
 /* Function that count the number of characters*/
 int StringLenght(char *string);
 
+/* Function that verify access of falie every its called */
+int access_handler(inputdata_t *data);
+
 /*		BUILT INS		*/
 /**
 * struct builtin - shell structure to save builtin
