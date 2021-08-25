@@ -40,7 +40,8 @@ int main(int argc __attribute__((unused)), char *argv[])
 			if (_strequal(builtin_function[k].type, glData.args_token[0]))
 			{
 				builtin_function[k].f(&glData);
-				continue;
+				glData.args_token[0] = NULL;
+				break;
 			}
 		if (!glData.args_token[0]) /* Token is different from null*/
 			continue;
