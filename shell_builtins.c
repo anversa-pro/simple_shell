@@ -24,7 +24,7 @@ int sh_env(inputdata_t *data)
 
 	(void)data;
 
-	for (;environ != NULL && environ[i]; i++)
+	for (; environ != NULL && environ[i]; i++)
 		_printf(1, "%s\n", environ[i]);
 
 	if (i <= 1)
