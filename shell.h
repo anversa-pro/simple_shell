@@ -15,13 +15,14 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+
+/*		MACROS		*/
 #define PROMPT "$ "
 #define DELIM " "
 #define DELIM2 ":"
 #define SLASH "/"
 
 /*		MAIN		*/
-
 /* global variable that extract env of system*/
 extern char **environ;
 /**
@@ -29,7 +30,10 @@ extern char **environ;
 * *@inputarray: pointer to a copy of terminal input string
 * @inputsize: size of terminal input string
 * *@args_token: pointer to a segmented input string
-* **@copy_path: copy of env PATH
+* *@copy_path: copy of env PATH
+* *@tokenized_path: Poiter to the entire PATH without PATH=
+* @promptcounter: counts number of input user commands
+* @wexitreturn: Integer that saves a flag that returns an exit
 * Description: Struct contain all shell info.
 * This one struct will be passed from func to func and contain
 * all the shell info for the current session.
@@ -41,8 +45,8 @@ typedef struct inputdata
 	char *args_token[1024]; /*Tokenized inputarray */
 	char *copy_path;	/* Entire PATH without PATH= */
 	char *tokenized_path[1024]; /*Tokenized PATH*/
-	int promptcounter; /* counts number of input user commands*/
-	int wexitreturn; /*Integer that saves a flag that returns an exit*/
+	int promptcounter; /* counts number of input user commands */
+	int wexitreturn; /* Integer that saves a flag that returns an exit */
 } inputdata_t;
 
 /* Function to display a prompt and return the input value */
@@ -54,16 +58,16 @@ void _strtok(inputdata_t *data);
 /* Copy environ and search for path into the copy. */
 char *getpath(void);
 
-/*Function that tokenize the path*/
+/* Function that tokenize the path*/
 int strtok_path(inputdata_t *data);
 
 /* Function that create a child and execute the pathname*/
 int pid_ppid(inputdata_t *data, char *);
 
-/*function that create a child, execute the pathname and concatenate with input*/
+/* Create a child, execute the pathname and concatenate with input*/
 int path_pid_ppid(inputdata_t *data);
 
-/* concat_temp - Concatenation temporal to check path */
+/* Concatenation temporal to check path */
 char *concat_temp(inputdata_t *data, int j);
 
 /* Function that compares two strings  */
@@ -72,7 +76,7 @@ int _strequal(char *s1, char *s2);
 /* Function that concatenates two strings */
 char *_strcat(char *dest, char *src);
 
-/*function that count the number of characters*/
+/* Function that count the number of characters*/
 int StringLenght(char *string);
 
 /*		BUILT INS		*/
@@ -92,15 +96,16 @@ typedef struct builtin
 int sh_exit(inputdata_t *data);
 
 /*		_PRINTF		*/
-
+/* Function that emulates printf */
 int _printf(int fd, const char *format, ...);
 
 /* Function that fills place holders with string */
 int print_c(va_list parameters, int j, char *join);
-/* function that fills place holders with string */
+
+/* Function that fills place holders with string */
 int print_s(va_list parameters, int j, char *join);
 
-/* function that fills place holders with string */
+/* Function that fills place holders with string */
 int print_n(va_list parameters, int j, char *join);
 /**
  *  struct placeHolders- typedef struct
