@@ -13,8 +13,8 @@ int _printf(int fd, const char *format, ...)
 	int (*pointer_f)(va_list, int, char *);
 	va_list args;
 
-	place_holders place[] = {
-		{"c", print_c}, {"s", print_s}, {"d", print_n}, {"i", print_n}};
+	placeHolders_t place[] = {
+		{"c", _printC}, {"s", _printS}, {"d", _printN}, {"i", _printN}};
 
 	va_start(args, format);
 

@@ -9,8 +9,7 @@
  */
 int str_startwith(char *env, char *string_to_check)
 {
-	int j;
-	int c;
+	int j = 0, c = 0;
 
 	for (j = 0; env[j] >= '\0'; j++)
 	{
@@ -31,10 +30,10 @@ int str_startwith(char *env, char *string_to_check)
 
 /* FUNCTION 02 - B */
 /**
- * *getpath - Copy environ and search for path into the copy.
+ * *getPath - Copy environ and search for path into the copy.
  * Return: Pointer to a Path or NULL if not found.
  */
-char *getpath()
+char *getPath()
 {
 	char **env = environ;
 
@@ -48,23 +47,23 @@ char *getpath()
 }
 /* FUNCTION 02 - C */
 /**
- * strtok_path - Function that tokenize the path.
+ * strtokPath - Function that tokenize the path.
  * *@data: Pointer to global structure
  * Return: Success status
  */
-int strtok_path(inputdata_t *data)
+int strtokPath(inputData_t *data)
 {
-	char *text = data->copy_path;
+	char *text = data->copyPath;
 	char *tmp;
 	int i = 0;
 
-	data->tokenized_path[0] = strtok(text, DELIM2);
+	data->tokenizedPath[0] = strtok(text, DELIM2);
 	i++;
 	tmp = text;
 	while (tmp != NULL)
 	{
 		tmp = strtok(NULL, DELIM2);
-		data->tokenized_path[i] = tmp;
+		data->tokenizedPath[i] = tmp;
 		i++;
 	}
 	return (0);

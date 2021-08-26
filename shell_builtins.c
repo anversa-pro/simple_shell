@@ -6,11 +6,11 @@
  * *@data: Pointer to global structure
  * Return: to define.
  */
-int sh_exit(inputdata_t *data)
+int sh_exit(inputData_t *data)
 {
 	(void)data;
-	free(data->inputarray);
-	exit(data->wexitreturn);
+	free(data->inputArray);
+	exit(data->wexitStat);
 }
 /* BUILTINS 01 - A */
 /**
@@ -18,7 +18,7 @@ int sh_exit(inputdata_t *data)
  * *@data: Pointer to global structure
  * Return: to define.
  */
-int sh_env(inputdata_t *data)
+int sh_env(inputData_t *data)
 {
 	int i = 0;
 
@@ -28,7 +28,7 @@ int sh_env(inputdata_t *data)
 		_printf(1, "%s\n", environ[i]);
 
 	if (i <= 1)
-		data->wexitreturn = 0;
+		data->wexitStat = 0;
 
 	return (0);
 }

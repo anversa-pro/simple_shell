@@ -20,41 +20,41 @@ void sigint_handler(int number __attribute__((unused)))
  */
 int main(int argc __attribute__((unused)), char *argv[])
 {
-	int checkprompt = 0, k = 0;
-	inputdata_t glData = {NULL};
-	built_in builtin_function[] = {
+	int checkPrompt = 0, k = 0;
+	inputData_t glData = {NULL};
+	builtIn_t builtinFunction[] = {
 		{"exit", sh_exit}, {"env", sh_env}, {NULL, NULL}};
 
 	signal(SIGINT, sigint_handler);
 
-	glData.promptcounter = 0, glData.inputarray = NULL;
-	glData.inputsize = 0, glData.nameExecutable = argv[0];
+	glData.promptCounter = 0, glData.inputArray = NULL;
+	glData.inputSize = 0, glData.nameExecutable = argv[0];
 
-	while (checkprompt != -1) /* Checks if its EOF*/
+	while (checkPrompt != -1) /* Checks if its EOF*/
 	{
-		checkprompt = promptdisplay(&glData);
-		if (checkprompt == -1)
+		checkPrompt = promptDisplay(&glData);
+		if (checkPrompt == -1)
 			break;
 		_strtok(&glData); /* Tokenize input and saves into glData*/
-		for (k = 0; builtin_function[k].f; k++)
-			if (_strequal(builtin_function[k].type, glData.args_token[0]))
+		for (k = 0; builtinFunction[k].f; k++)
+			if (_strequal(builtinFunction[k].type, glData.argsToken[0]))
 			{
-				builtin_function[k].f(&glData);
-				glData.args_token[0] = NULL;
+				builtinFunction[k].f(&glData);
+				glData.argsToken[0] = NULL;
 				break;
 			}
-		if (!glData.args_token[0]) /* Token is different from null*/
+		if (!glData.argsToken[0]) /* Token is different from null*/
 			continue;
-		if (access_handler(&glData) == 0)
+		if (accessHandler(&glData) == 0)
 			continue;
 		/* DELETED LINE */
-		glData.copy_path = getpath(); /* Cp env & find the path*/
-		strtok_path(&glData); /* Tokenize path to find the directory */
-		path_pid_ppid(&glData);
-		free(glData.copy_path);
+		glData.copyPath = getPath(); /* Cp env & find the path*/
+		strtokPath(&glData); /* Tokenize path to find the directory */
+		pathConcat(&glData);
+		free(glData.copyPath);
 	}
-	free(glData.inputarray);
+	free(glData.inputArray);
 	if (isatty(STDIN_FILENO))
 		write(1, "\n", 1);
-	return (glData.wexitreturn);
+	return (glData.wexitStat);
 }

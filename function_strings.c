@@ -2,11 +2,11 @@
 
 /* FUNCTION STRINGS - 1 */
 /**
- * StringLenght - Function that calculates the length of a string
+ * stringLenght - Function that calculates the length of a string
  * @string: Pointer to global structure
  * Return: Success status
  */
-int StringLenght(char *string)
+int stringLenght(char *string)
 {
 	int i = 0;
 

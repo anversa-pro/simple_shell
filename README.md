@@ -6,9 +6,6 @@
 	  &emsp;&emsp;&emsp;
 	    <img align="center" src="https://avatars.githubusercontent.com/u/70358968?v=4" alt="Maria Paula Medina" height="120" width="120" />
 	      <a href="https://github.com/Mapu456" target="blank"><img align="center" src="https://raw.githubusercontent.com/devicons/devicon/9f4f5cdb393299a81125eb5127929ea7bfe42889/icons/github/github-original.svg" alt="Github Maria Paula" height="30" width="40" /></a>
-	        <img align="center" src="https://avatars.githubusercontent.com/u/77915323?v=4" alt="Michael Jose Celeita" height="120" width="120"/>
-		  <a href="https://github.com/michaelcele" target="blank"><img align="center" src="https://raw.githubusercontent.com/devicons/devicon/9f4f5cdb393299a81125eb5127929ea7bfe42889/icons/github/github-original.svg" alt="Github Jose" height="30" width="40" /></a>
-
   </p>
     <br>
       <p align="center"> SHELL </p>

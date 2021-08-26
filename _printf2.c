@@ -1,26 +1,26 @@
 #include "shell.h"
 
 /**
- * print_c- function that fills place holders with string
+ * _printC- function that fills place holders with string
  * @parameters:takes the parameter of va_arg
  * @join: is the buffer (takes temporal value)
  * @j: is the position where will be replace the va_arg
  * Return:j the actual position .
  */
-int print_c(va_list parameters, int j, char *join)
+int _printC(va_list parameters, int j, char *join)
 {
 	join[j] = va_arg(parameters, int);
 	return (j);
 }
 
 /**
- * print_s-function that fills place holders with string
+ * _printS-function that fills place holders with string
  * @parameters: takes the parameter of va_arg
  * @join: is the buffer (takes temporal value)
  * @j: is the position where will be replace the va_arg
  * Return:j the actual position .
  */
-int print_s(va_list parameters, int j, char *join)
+int _printS(va_list parameters, int j, char *join)
 {
 	int x = 0;
 	int c = 0;
@@ -47,13 +47,13 @@ int print_s(va_list parameters, int j, char *join)
 }
 
 /**
- * print_n - function that fills place holders with string
+ * _printN - function that fills place holders with string
  * @parameters: takes the parameter of va_arg
  * @join: is the buffer (takes temporal value)
  * @j: is the position where will be replace the va_arg
  * Return:j the actual position .
  */
-int print_n(va_list parameters, int j, char *join)
+int _printN(va_list parameters, int j, char *join)
 {
 	long int number;
 	int aux_variable, base;
