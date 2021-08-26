@@ -101,9 +101,9 @@ int path_pid_ppid(inputdata_t *data)
 	}
 	if (i == 0)
 	{
+		data->wexitreturn = 127;
 		_printf(2, "%s: %d: %s: not found\n", data->nameExecutable,
 		data->promptcounter, data->args_token[0]);
-		return (-1);
 	}
 	return (0);
 }
