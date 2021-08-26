@@ -63,7 +63,11 @@ int pid_ppid(inputdata_t *data, char *dircommand)
 	}
 	if (pid == 0)
 	{
-		execve(dircommand, data->args_token, environ);
+		if (execve(dircommand, data->args_token, environ) == -1)
+		{
+			perror("Error:");
+			return (1);
+		}
 	}
 	else
 	{
