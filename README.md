@@ -35,20 +35,24 @@ The purpouse of this prroject is to Write a simple UNIX command interpreter.
 	* All your header files should be include guarded  
 
 **C Files:**
-* _printf.c:
-* _printf2.c:
-* errorAccess_f.c:
-* function_strings.c:
-* functions_01.c:
-* functions_02.c:
-* shell.c:
-* shell_builtins.c:
+
+| C Files      		| Description     					|
+| :---       		| :---:							|
+| _printf.c      	| This file comprises main function of _printf   	|
+| _printf2.c   		| This file contains functions that fills place holders with string according to calling process   	|
+| errorAccess_f.c   	| Checks whether the calling process can access a file path						|
+| function_strings.c   	| This file includes functions to concatenate, compare and calculate the length of strings     		|
+| functions_01.c   	| This file holds the prompt function, tokenization of paths, and process creation 			|
+| functions_02.c   	| This file contains other tokenization functions and manipulation of strings				|
+| shell.c   		| Main function of the interpreter that manage the full process			     			|
+| shell_builtins.c   	| Shell builtin functions							      			|
 
 **Header:**
-shell.h:
+shell.h: his file contains prototypes for all the functions and the struct for data and function relation.
 
 **Man Page:**
-To access the man page __man_1_simple_shell__ directly in a terminal, download the file and move it to the directory /usr/share/man/man1 where the system stores man pages for User shell commands.
+man_1_simple_shell : Custom man page for mini-shell executable file.  
+To access the man page __man_1_simple_shell__ directly in a terminal, download the file and move it to the directory `/usr/share/man/man1` where the system stores man pages for User shell commands.
 You can view it by typing the following command: `cd /usr/share/man/man1` otherwise into the project directory by typing `man ./man_1_simple_shell`
 
 ### How to use this project
@@ -56,12 +60,12 @@ You can view it by typing the following command: `cd /usr/share/man/man1` otherw
 2. Access to the directory and compile all C files with the command: gcc -Wall -Wextra -Werror -pedantic -std=gnu89 *.c - o hsh ( hsh is a suggested name, not mandatory)
 3. In case you prefer to use the non-interactive mode with the Teletypewriter: write down your instruction and pipeline the executable you create on the previous step.  
 	* ieg. Display the list of files on current directory order and long detailed. `echo /usr/bin/ls -la | ./hsh`  
-	<a href=#><https://github.com/anversa-pro/IMG/blob/491e1f93129e823a4d5ebb5e6353c1e1c9bb4ff8/Examples%20of%20use%20-%20nonInteractive.png"/></a>
+	<a href=#><img src="https://github.com/anversa-pro/IMG/blob/491e1f93129e823a4d5ebb5e6353c1e1c9bb4ff8/Examples%20of%20use%20-%20nonInteractive.png" /></a>
 4. By  typing `./hsh` runs the program for you to execute the instructions on this mini-shell.  
 	* ieg. to show files on current directory, insert `ls` instruction, then to show the path of you current directry, insert `pwd` instruction.    
-	<a href=#><https://github.com/anversa-pro/IMG/blob/491e1f93129e823a4d5ebb5e6353c1e1c9bb4ff8/Examples%20of%20use.png"/></a>
+	<a href=#><img src="https://github.com/anversa-pro/IMG/blob/491e1f93129e823a4d5ebb5e6353c1e1c9bb4ff8/Examples%20of%20use.png" /></a>
 5. To finish the execution and exit the program just insert `exit` or press `CRTL + D` on your keyboard.
 	
 ### Flowchart  
 This image shows the general procces designed to perform an emulation of the shell.  
-<a href=#><https://github.com/anversa-pro/IMG/blob/5c2e5e5c4e2578dbcf38a8d76beecd293b8d187d/Diagram-hsh_flowchart_v2.0.png" /></a>
+<a href=#><img src="https://github.com/anversa-pro/IMG/blob/5c2e5e5c4e2578dbcf38a8d76beecd293b8d187d/Diagram-hsh_flowchart_v2.0.png" /></a>
